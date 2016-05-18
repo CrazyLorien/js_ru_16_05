@@ -14,7 +14,7 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.jsx?/,
+                test: /\.js?/,
                 loaders: ['babel'],
                 include: path.join(__dirname, 'src')
             }, {
@@ -22,5 +22,10 @@ module.exports = {
                 loader: 'style-loader!css-loader'
             }
         ]
-    }
+    },
+    watch: true,
+
+    plugins : [
+        new webpack.NoErrorsPlugin()
+    ]
 }
