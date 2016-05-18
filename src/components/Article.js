@@ -16,11 +16,19 @@ class Article extends Component {
         const textItem = isOpen ? <section>{text}</section> : null
         const comments = article.comments ? <CommentsList comments = { article.comments } />:  <div>No comments</div>;
         return (
-            <div>
-                <h3 onClick = {this.handleClick}>{title}</h3>
-                <div>{textItem}</div>
-                {comments}
-            </div>
+           
+                  <div className="row">
+                     <div className="col-sm-4"><a href="#" class=""><img src="http://placehold.it/1280X720" width = "300px"class="img-responsive" /></a>
+                     </div>
+                    <div className="col-sm-8">
+                    <h3 className={isOpen ? 'title expandable animated' : 'title expandable'}  onClick = {this.handleClick}>{title}</h3>
+                     <p class="text-muted"><span class="glyphicon glyphicon-lock"></span> Available Exclusively for Premium Members</p>
+                     <div>{textItem}</div>
+          
+                     <div class="text-muted">{comments}</div>      
+                     </div>
+                     <hr />    
+                  </div>      
         )
     }
 

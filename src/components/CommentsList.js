@@ -14,7 +14,7 @@ class CommentsList  extends Component {
         const textComment = isOpen ? <section>{commentItems}</section> : null
         
         return (<ul>
-        <h3 onClick = {this.handleClick}>Comments</h3>
+        <h3 className={isOpen ? 'title expandable animated' : 'title expandable'} onClick = {this.handleClick}>Comments</h3>
             {textComment}
         </ul>)
     }
