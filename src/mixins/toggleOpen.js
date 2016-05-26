@@ -6,6 +6,7 @@ export default {
     },
     toggleOpen(ev) {
         if (ev) ev.preventDefault()
+        console.log('on click works from mixin')
         this.setState({
             isOpen: !this.state.isOpen
         })
