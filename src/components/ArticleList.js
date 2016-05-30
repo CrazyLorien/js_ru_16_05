@@ -6,15 +6,16 @@ import Article from './Article'
 import HideInactive from '../decorators/hideInactive'
 
 import Chart from './Chart'
+import oneOpen from '../decorators/oneOpen'
 
 class ArticleList extends Component {
 
     render() {
-        const { articles } = this.props
+        const { articles, openItem, isOpen } = this.props
         const articleItems = articles.map((article) => <li key={article.id}>
             <Article article = {article}
-                isOpen = {article.id == this.props.openedArticle}
-                toggleOpen = {this.props.openArticle(article.id)}
+                isOpen = {isOpen(article.id)}
+                toggleOpen = {openItem(article.id)}
             />
         </li>)
         return (
@@ -33,4 +34,5 @@ ArticleList.propTypes = {
     articles: PropTypes.array.isRequired
 }
 
-export default HideInactive(ArticleList)
+export default oneOpen(ArticleList)
+
