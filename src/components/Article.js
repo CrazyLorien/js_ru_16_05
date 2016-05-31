@@ -3,8 +3,8 @@ import { findDOMNode } from 'react-dom'
 import CommentList from './CommentList'
 import toggleOpen from '../decorators/toggleOpen'
 import { deleteArticle } from '../AC/articles'
-import { addComment } from '../AC/comments'
 import { articleStore, commentStore } from '../stores'
+import AddComment from './AddComment'
 
 
 class Article extends Component {
@@ -46,11 +46,7 @@ class Article extends Component {
                     <a href="#" onClick={this.handleDelete}>delete me</a>
                 </h3>
                 {textItem}
-                <div>
-                <p>Add comment</p>
-                <textarea ref="comment"/>
-                <button onClick={this.handleAddComment}>Add comment</button>
-                </div>
+                <AddComment  isOpen={isOpen}  article = {article} />              
             </div>
 
         )
@@ -60,16 +56,7 @@ class Article extends Component {
         ev.preventDefault()
         deleteArticle(this.props.article.id)
     }
-    
-    //here we add method that invoce add coment 
-    
-    handleAddComment = (ev) =>  {
-        if(ev)
-            ev.preventDefault()
-        addComment(this.refs.comment.value, this.props.article.id)
-        
-    }
-    
+      
 }
 
 Article.propTypes = {
