@@ -2,11 +2,18 @@ import React, { Component, PropTypes } from 'react'
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
 import NewCommentForm from './NewCommentForm'
+import { loadArticleCommentsAC } from '../AC/comments'
 
 class CommentList extends Component {
     static propTypes = {
         comments: PropTypes.array
     };
+    
+   constructor() {
+        super()
+      
+    }
+
 
     render() {
         return (
@@ -25,7 +32,7 @@ class CommentList extends Component {
 
     getList() {
         const { isOpen, article } = this.props
-        const comments = article.getRelation('comments')
+        const comments = this.props.comments.length === 0  && isOpen ?  this.handleGetArticleComments(article.id) : this.props.comments
         if (!isOpen) return null
         if (!comments || !comments.length) return <h3>No comments yet</h3>
         const items = comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)
@@ -33,6 +40,12 @@ class CommentList extends Component {
             {items}
             <li><NewCommentForm articleId = {article.id} /></li>
         </ul>
+    }
+    
+    
+    handleGetArticleComments = (id) => {
+        
+        loadArticleCommentsAC(id)
     }
 }
 

@@ -7,3 +7,5 @@ export const LOAD_ARTICLE_BY_ID = 'LOAD_ARTICLE_BY_ID'
 export const START = '_START'
 export const SUCCESS = '_SUCCESS'
 export const FAIL = '_FAIL'
+
+export const LOAD_ARTICLE_COMMENTS = 'LOAD_ARTICLE_COMMENTS'
