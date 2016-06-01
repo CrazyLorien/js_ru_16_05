@@ -2,6 +2,7 @@ import BasicStore from './BasicStore'
 import AppDispatcher from '../dispatcher'
 import { DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_ARTICLE_BY_ID, START, SUCCESS, FAIL } from '../constants'
 
+
 export default class Article extends BasicStore {
     constructor(...args) {
         super(...args)
@@ -45,6 +46,7 @@ export default class Article extends BasicStore {
 
                 default:
                     return
+
             }
             this.emitChange()
         })

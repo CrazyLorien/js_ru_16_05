@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import Body from './Body'
 import toggleOpen from '../decorators/toggleOpen'
+
 import { deleteArticle, loadArticleById } from '../AC/articles'
 import { commentStore } from '../stores'
 
@@ -12,9 +13,18 @@ class Article extends Component {
             some: ''
         }
     }
+    
+     componentDidMount() {       
+        //commentStore.addChangeListener(this.handleAddComment)
+     }
+       
+     componentWillUnmount() {
+        //commentStore.removeChangeListener(this.handleAddComment)    
+     }
 
     componentWillMount() {
     }
+
 
     componentDidMount() {
     }
@@ -28,12 +38,14 @@ class Article extends Component {
         if (isOpen && !text && !loading ) loadArticleById({ id })
     }
 
+
     componentDidUpdate() {
     }
 
     render() {
         const { article, isOpen, toggleOpen} = this.props
         const comments = this.props.comments;
+
         if (!article) return <h3>No article</h3>
 
         const { title, text,  id } = article
@@ -45,7 +57,9 @@ class Article extends Component {
                     <a href="#" onClick={this.handleDelete}>delete me</a>
                 </h3>
                 {textItem}
+                            
             </div>
+
         )
     }
 
@@ -53,8 +67,8 @@ class Article extends Component {
         ev.preventDefault()
         deleteArticle(this.props.article.id)
     }
+      
 }
-
 
 Article.propTypes = {
     article: PropTypes.shape({

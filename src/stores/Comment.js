@@ -2,6 +2,7 @@ import BasicStore from './BasicStore'
 import AppDispatcher from '../dispatcher'
 import { ADD_COMMENT,LOAD_ARTICLE_COMMENTS,START, SUCCESS, FAIL } from '../constants'
 
+
 export default class Comment extends BasicStore {
     constructor(...args) {
         super(...args)
@@ -20,6 +21,7 @@ export default class Comment extends BasicStore {
                         this._add(item)
                     })
                     this.emitChange()
+
             }
         })
     }

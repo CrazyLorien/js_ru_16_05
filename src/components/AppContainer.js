@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import ArticleList from './ArticleList'
+
 import connectToStore from '../decorators/connectToStore'
 import { loadAllArticles } from '../AC/articles'
 
@@ -22,3 +23,4 @@ function getState(stores) {
 }
 
 export default connectToStore(null, getState)(AppContainer)
+

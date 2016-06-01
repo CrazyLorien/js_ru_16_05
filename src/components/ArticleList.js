@@ -1,9 +1,14 @@
+
+
 import React, { PropTypes, Component } from 'react'
 import Article from './Article'
+import HideInactive from '../decorators/hideInactive'
+
 import Chart from './Chart'
 import oneOpen from '../decorators/oneOpen'
 
 class ArticleList extends Component {
+
     render() {
         const { articles, openItem, isOpen, comments } = this.props
         const articleItems = articles.map((article) => <li key={article.id}>
@@ -22,6 +27,7 @@ class ArticleList extends Component {
             </div>
         )
     }
+
 }
 
 ArticleList.propTypes = {
@@ -29,3 +35,4 @@ ArticleList.propTypes = {
 }
 
 export default oneOpen(ArticleList)
+

@@ -1,3 +1,4 @@
+
 import React, { PropTypes, createClass } from 'react'
 import Article from './Article'
 import Chart from './Chart'
@@ -25,6 +26,7 @@ const ArticleListOld = createClass({
             </div>
         )
     }
+
 })
 
 export default ArticleListOld

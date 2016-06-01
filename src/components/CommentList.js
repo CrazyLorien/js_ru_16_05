@@ -11,7 +11,9 @@ class CommentList extends Component {
     
    constructor() {
         super()
-      
+        this.state = {
+            comments : []
+        }
     }
 
 
@@ -31,8 +33,9 @@ class CommentList extends Component {
     }
 
     getList() {
-        const { isOpen, article } = this.props
-        const comments = this.props.comments.length === 0  && isOpen ?  this.handleGetArticleComments(article.id) : this.props.comments
+        const { isOpen, article} = this.props
+       
+        const comments = this.props.comments.filter( (item) => { return article.id === item.article} ).length === 0 && isOpen ?  this.handleGetArticleComments(article.id) :  this.props.comments
         if (!isOpen) return null
         if (!comments || !comments.length) return <h3>No comments yet</h3>
         const items = comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)

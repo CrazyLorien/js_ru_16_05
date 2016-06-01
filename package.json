@@ -33,9 +33,12 @@
   },
   "dependencies": {
     "events": "^1.1.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
     "flux": "^2.1.1",
     "jquery": "^2.2.4",
     "react": "^15.0.2",
-    "react-dom": "^15.0.2"
+    "react-dom": "^15.0.2",
+    "url-loader": "^0.5.7"
   }
 }
