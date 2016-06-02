@@ -34,6 +34,7 @@ class CommentList extends Component {
 
     getList() {
         const { isOpen, article} = this.props
+        //у нас есть метод article.getRelation('comments')
        //делать тут обращение к серверу плохой паттерн - render должен быть чистой функцией, к серверу надо обращаться в lifecycle хуках;
         const comments = this.props.comments.filter( (item) => { return article.id === item.article} ).length === 0 && isOpen ?  this.handleGetArticleComments(article.id) :  this.props.comments
         if (!isOpen) return null
