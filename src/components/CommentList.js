@@ -2,11 +2,12 @@ import React, { Component, PropTypes } from 'react'
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
 import NewCommentForm from './NewCommentForm'
-import { loadArticleCommentsAC } from '../AC/comments'
+import { loadComments } from '../AC/comments'
+
 
 class CommentList extends Component {
     static propTypes = {
-        comments: PropTypes.array
+        article: PropTypes.object.isRequired
     };
     
    constructor() {
@@ -16,6 +17,10 @@ class CommentList extends Component {
         }
     }
 
+
+    componentWillReceiveProps({ isOpen, article }) {
+        if (isOpen && !article.loadedComments && !article.loadingComments) loadComments({ id: article.id })
+    }
 
     render() {
         return (
@@ -33,10 +38,10 @@ class CommentList extends Component {
     }
 
     getList() {
-        const { isOpen, article} = this.props
-       
-        const comments = this.props.comments.filter( (item) => { return article.id === item.article} ).length === 0 && isOpen ?  this.handleGetArticleComments(article.id) :  this.props.comments
+        const { isOpen, article } = this.props
+        const comments = article.getRelation('comments')
         if (!isOpen) return null
+        if (!article.loadedComments) return <h3>Loading...</h3>
         if (!comments || !comments.length) return <h3>No comments yet</h3>
         const items = comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)
         return <ul>
