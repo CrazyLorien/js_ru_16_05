@@ -1,11 +1,8 @@
 import BasicStore from './BasicStore'
 import AppDispatcher from '../dispatcher'
-<<<<<<< HEAD
-import { ADD_COMMENT,LOAD_ARTICLE_COMMENTS,START, SUCCESS, FAIL } from '../constants'
 
-=======
-import { ADD_COMMENT, LOAD_COMMENTS_FOR_ARTICLE, START, SUCCESS, FAIL } from '../constants'
->>>>>>> 2aaecb41bb6b5b9897221a1d1c90e3408372216c
+import { ADD_COMMENT, LOAD_COMMENTS_FOR_ARTICLE,LOAD_ALL_COMMENTS,CHANGE_PAGE_NUMBER, START, SUCCESS, FAIL } from '../constants'
+
 
 export default class Comment extends BasicStore {
     constructor(...args) {
@@ -17,28 +14,37 @@ export default class Comment extends BasicStore {
             switch (type) {
                 case ADD_COMMENT:
                     this._add(payload.comment)
-<<<<<<< HEAD
-                    this.emitChange()
-                    break;
-                 case LOAD_ARTICLE_COMMENTS + SUCCESS:
-                    this._items = {};
-                    response.map((item)=> {                       
-                        this._add(item)
-                    })
-                    this.emitChange()
 
-=======
                     break
 
                 case LOAD_COMMENTS_FOR_ARTICLE + SUCCESS:
                     response.forEach(this._add)
                     break
-
+                    
+                case LOAD_ALL_COMMENTS + SUCCESS:
+                {
+                    response.records.forEach(this._add)
+                    this.pages = Math.floor(response.total/this.limit)
+                    break
+                }
+                    
+                case CHANGE_PAGE_NUMBER:
+                    this.pageNumber = payload.pageNumber
+                    break
+                    
                 default:
                     return
->>>>>>> 2aaecb41bb6b5b9897221a1d1c90e3408372216c
             }
-            this.emitChange()
+            
+            var self = this;
+            window.setTimeout(function() {
+                self.emitChange()
+            }, 1)
         })
+        
+        this.pages = 0;
+        this.pageNumber = 1;
+        this.limit = 10;
+        this.offset = 10;      
     }
 }
