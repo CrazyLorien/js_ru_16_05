@@ -8,5 +8,6 @@ export default (
         <Route path = "/articles" component = {ArticleIndex}>
             <Route path = ":id" component = {ArticlePage} />
         </Route>
+  
     </Router>
 )

@@ -12,9 +12,6 @@ class CommentList extends Component {
     
    constructor() {
         super()
-        this.state = {
-            comments : []
-        }
     }
 
 
@@ -39,10 +36,7 @@ class CommentList extends Component {
 
     getList() {
         const { isOpen, article} = this.props
-        //у нас есть метод article.getRelation('comments')
-        //+ нигде не вижу проверки, загружаете ли вы уже эти комменты - это может привести к множественным запросам
-        //делать тут обращение к серверу плохой паттерн - render должен быть чистой функцией, к серверу надо обращаться в lifecycle хуках;
-        const comments = this.props.comments.filter( (item) => { return article.id === item.article} ).length === 0 && isOpen ?  this.handleGetArticleComments(article.id) :  this.props.comments
+        const comments = article.getRelation('comments');
         if (!isOpen) return null
         if (!article.loadedComments) return <h3>Loading...</h3>
         if (!comments || !comments.length) return <h3>No comments yet</h3>
@@ -52,12 +46,7 @@ class CommentList extends Component {
             <li><NewCommentForm articleId = {article.id} /></li>
         </ul>
     }
-    
-    
-    handleGetArticleComments = (id) => {
-        
-        loadArticleCommentsAC(id)
-    }
+   
 }
 
 export default toggleOpen(CommentList)

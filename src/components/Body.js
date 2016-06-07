@@ -10,7 +10,7 @@ function Body(props) {
     return (
         <section>
             {text}
-            <div><CommentList article = {article } comments = {comments}/></div>
+            <div><CommentList article = {article }/></div>
         </section>
     )
 }

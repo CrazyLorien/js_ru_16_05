@@ -17,3 +17,6 @@ export function addComment(articleId, comment) {
 
 export const loadComments = asyncAC(LOAD_COMMENTS_FOR_ARTICLE, loadCommentsCall)
 
+export const loadAllComments = asyncAC(LOAD_ALL_COMMENTS, loadAllComments)
+
+
