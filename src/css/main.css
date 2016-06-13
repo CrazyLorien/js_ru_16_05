@@ -5,3 +5,6 @@ h3.expandable:hover, div.text-muted:hover{
 .animated{
 	color:red;
 }
+
+
+textarea,input.button {float:left;}

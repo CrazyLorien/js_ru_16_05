@@ -1,7 +1,8 @@
 import BasicStore from './BasicStore'
 import AppDispatcher from '../dispatcher'
-import { DELETE_ARTICLE, LOAD_COMMENTS_FOR_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_ARTICLE_BY_ID,
-    START, SUCCESS, FAIL } from '../constants'
+import { DELETE_ARTICLE, LOAD_COMMENTS_FOR_ARTICLE,
+         ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_ARTICLE_BY_ID,
+         START, SUCCESS, FAIL,ADD_ARTICLE } from '../constants'
 
 
 export default class Article extends BasicStore {
@@ -60,6 +61,15 @@ export default class Article extends BasicStore {
                         loadedComments: true
                     })
                     break
+                    
+                case ADD_ARTICLE:
+                    this._add( {
+                        id:payload.id,
+                        title:payload.title,
+                        text:payload.text,
+                        comments:[]
+                    })
+                   break
 
                 default:
                     return
