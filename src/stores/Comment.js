@@ -6,6 +6,7 @@ import { loadCommentsForPage } from '../AC/comments'
 
 
 
+
 export default class Comment extends BasicStore {
     constructor(...args) {
         super(...args)
@@ -17,11 +18,13 @@ export default class Comment extends BasicStore {
             switch (type) {
                 case ADD_COMMENT:
                     this._add(payload.comment)
+
                     break
 
                 case LOAD_COMMENTS_FOR_ARTICLE + SUCCESS:
                     response.forEach(this._add)
                     break
+
        
                 case LOAD_COMMENTS_FOR_PAGE + START:
                     this.pagination[payload.page] = LOADING
@@ -32,12 +35,22 @@ export default class Comment extends BasicStore {
                     this.pagination[payload.page] = response.records.map(comment => comment.id)
                     response.records.forEach(this._add)
                     break;
-
+                                    
+                    
                 default:
                     return
             }
-            this.emitChange()
+            
+            var self = this;
+            window.setTimeout(function() {
+                self.emitChange()
+            }, 1)
         })
+        
+        this.pages = 0;
+        this.pageNumber = 1;
+        this.limit = 10;
+        this.offset = 10;      
     }
 
     getOrLoadForPage = (page) => {

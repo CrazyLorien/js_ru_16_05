@@ -10,6 +10,7 @@ import NotFound from './RouteHandlers/NotFound'
 
 export const history = browserHistory
 
+
 export default (
     <Router history = {history}>
         <Redirect from = "/" to = "/articles"/>
@@ -26,7 +27,7 @@ export default (
             <IndexRedirect to = "1"/>
             <Route path = ":page" component = {CommentsPage} />
         </Route>
-
         <Route path = "*" component = {NotFound} />
+
     </Router>
 )

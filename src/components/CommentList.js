@@ -43,7 +43,7 @@ class CommentList extends Component {
 
     getList() {
         const { isOpen, article} = this.props
-        const comments = article.getRelation('comments');
+        const comments = article.getRelation('comments')
         if (!isOpen) return null
         if (!article.loadedComments) return <h3>Loading...</h3>
         if (!comments || !comments.length) return <h3>No comments yet</h3>

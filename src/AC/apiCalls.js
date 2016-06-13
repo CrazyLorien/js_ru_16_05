@@ -12,7 +12,6 @@ export function loadCommentsCall( { id }) {
     return $.get(`/api/comment?article=${id}`)
 }
 
-
 export function loadCommentsForPageCall({ page }) {
     return $.get(`/api/comment?limit=10&offset=${(page - 1) * 10}`)
 }
